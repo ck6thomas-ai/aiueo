@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#ff9ec4" />
+  <title>あいうえお｜可愛日文</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- 頂部 -->
+    <header class="topbar">
+      <div class="title">🌸 あいうえお</div>
+      <div class="streak" id="streak">🔥 0 天</div>
+    </header>
+
+    <!-- 卡片組切換（橫向滑動，由 JS 產生） -->
+    <div class="set-switch" id="setSwitch"></div>
+
+    <!-- 學習頁（SRS 單字卡） -->
+    <main id="page-study" class="page active">
+      <div class="due-text" id="dueText">今日待複習：0</div>
+
+      <div id="studyArea">
+        <div class="card-area">
+          <div class="flashcard" id="flashcard">
+            <div class="card-face card-front">
+              <div class="kana" id="cardKana">あ</div>
+              <div class="tap-hint">點一下翻面 ✨</div>
+            </div>
+            <div class="card-face card-back">
+              <div class="romaji" id="cardRomaji">a</div>
+              <div class="example" id="cardExample"></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="speak-btn" id="speakBtn">🔊 聽發音</button>
+
+        <div class="hint-row" id="hintRow">想一下讀音，再點卡片翻面 👆</div>
+
+        <div class="grade-row" id="gradeRow" style="display:none">
+          <button class="grade-btn again" data-g="again">😵<span>忘記</span></button>
+          <button class="grade-btn hard"  data-g="hard">🤔<span>模糊</span></button>
+          <button class="grade-btn good"  data-g="good">😎<span>記得</span></button>
+        </div>
+      </div>
+
+      <div id="doneArea" class="done-area" style="display:none">
+        <div class="done-emoji">🎉</div>
+        <div class="done-title">今日複習完成！</div>
+        <div class="done-sub">太棒了，你超認真 💕</div>
+        <button class="speak-btn" id="reviewAllBtn">🔁 再全部複習一次</button>
+      </div>
+    </main>
+
+    <!-- 測驗頁 -->
+    <main id="page-quiz" class="page">
+      <div id="quizArea">
+        <div class="quiz-top">
+          <span id="quizProgress">第 1 / 10 題</span>
+          <span id="quizScore">⭐ 0</span>
+        </div>
+        <div class="quiz-question" id="quizQuestion">あ</div>
+        <div class="quiz-ask" id="quizAsk">這個假名怎麼念？</div>
+        <div class="quiz-options" id="quizOptions"></div>
+      </div>
+
+      <div id="quizResult" class="done-area" style="display:none">
+        <div class="done-emoji" id="quizResultEmoji">🎉</div>
+        <div class="done-title" id="quizResultTitle">完成測驗！</div>
+        <div class="done-sub" id="quizResultScore">答對 0 / 10</div>
+        <button class="speak-btn" id="quizRestartBtn">🔁 再來一次</button>
+      </div>
+    </main>
+
+    <!-- 寫字頁 -->
+    <main id="page-write" class="page">
+      <div class="write-info">
+        <span class="write-kana" id="writeKana">あ</span>
+        <span class="write-romaji" id="writeRomaji">a</span>
+      </div>
+      <div class="write-hint">用手指在框框裡描寫看看 ✍️</div>
+
+      <div class="canvas-box" id="canvasBox">
+        <span class="guide-kana" id="guideKana">あ</span>
+        <canvas id="writeCanvas"></canvas>
+      </div>
+
+      <div class="nav-row">
+        <button class="nav-btn" id="writePrev">⬅️ 上一個</button>
+        <button class="nav-btn" id="writeClear">🧹 清除</button>
+        <button class="nav-btn" id="writeNext">下一個 ➡️</button>
+      </div>
+      <div class="nav-row">
+        <button class="nav-btn" id="writeSpeak">🔊 聽發音</button>
+        <button class="nav-btn shuffle" id="writeGuideToggle">👁️ 範本</button>
+      </div>
+    </main>
+
+    <!-- 文法頁 -->
+    <main id="page-grammar" class="page">
+      <div class="list-title">基礎文法句型 📖 點例句聽發音</div>
+      <div id="grammarList"></div>
+    </main>
+
+    <!-- 一覽頁 -->
+    <main id="page-list" class="page">
+      <div class="list-title">點一下聽發音 🔊</div>
+      <div class="kana-grid" id="kanaGrid"></div>
+    </main>
+
+    <!-- 底部導覽 -->
+    <nav class="tabbar">
+      <button class="tab active" data-page="study">📇<span>學習</span></button>
+      <button class="tab" data-page="quiz">📝<span>測驗</span></button>
+      <button class="tab" data-page="write">✍️<span>寫字</span></button>
+      <button class="tab" data-page="grammar">📖<span>文法</span></button>
+      <button class="tab" data-page="list">🗂️<span>一覽</span></button>
+    </nav>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
